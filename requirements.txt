@@ -1,0 +1,7 @@
+Flask
+gunicorn
+sqlalchemy
+flask_sqlalchemy
+pymysql
+python-dotenv
+mysqlclient

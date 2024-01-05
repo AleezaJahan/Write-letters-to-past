@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            background-color: #fff;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .letter {
+            border: 1px solid #ccc;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            width: 200%;
+            max-width: 400px; 
+            height: 150px; /* Or as per the content */
+            overflow-y: auto; /* In case content is longer */
+            text-align: left;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            color: #333;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: background-color 0.2s;
+            line-height: 1; /* Adjust line height to match font size */
+        }
+
+        button:hover,
+        button:focus {
+            background-color: #f7f7f7;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Letter #{{ letter.id }}</h2>
+        <div class="letter">
+          <p>{{ letter.content }}</p>
+        </div>
+        <button onclick="window.location.reload();">&#x21bb;</button> <!-- Reload symbol -->
+        <button onclick="window.location.href='/';">&#x2190;</button> <!-- Back arrow -->
+    </div>
+</body>
+</html>
