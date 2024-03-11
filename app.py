@@ -5,7 +5,12 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 
+
+
 app = Flask(__name__, static_folder='static') #initialize
+
+# Initialize flask to accept requests from any Chrome extension.
+CORS(app, resources={r"/api/*": {"origins": "chrome-extension://*"}})
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 #config
