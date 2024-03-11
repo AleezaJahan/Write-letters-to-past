@@ -5,3 +5,4 @@ flask_sqlalchemy
 pymysql
 python-dotenv
 mysqlclient
+Flask-CORS

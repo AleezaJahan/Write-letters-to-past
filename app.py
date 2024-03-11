@@ -1,4 +1,6 @@
 import os
+from flask import jsonify
+from flask_cors import CORS
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
@@ -51,3 +53,34 @@ if __name__ == "__main__": #run on local host
   app.run(host='0.0.0.0', port=3306, debug=True)
 
 
+#new API endpoints
+@app.route("/api/letters", methods=['POST'])
+def post_letter():
+    letter_content = request.json.get('content')  # Get letter content from JSON body
+    if letter_content:
+        letter = Letter(content=letter_content)
+        db.session.add(letter)
+        db.session.commit()
+        return jsonify({"success": True, "message": "Letter added"}), 201
+    else:
+        return jsonify({"success": False, "message": "No content provided"}), 400
+    
+@app.route("/api/letters", methods=['GET'])
+def get_letters():
+    letters = Letter.query.all()
+    letters_data = [{"id": letter.id, "content": letter.content} for letter in letters]
+    return jsonify(letters_data)
+
+@app.route("/api/letters", methods=['GET'])
+def get_letters():
+    letters = Letter.query.all()
+    letters_data = [{"id": letter.id, "content": letter.content} for letter in letters]
+    return jsonify(letters_data)
+
+@app.route("/api/letters/random", methods=['GET'])
+def get_random_letter():
+    letter = Letter.query.order_by(db.func.random()).first()
+    if letter:
+        return jsonify({"id": letter.id, "content": letter.content})
+    else:
+        return jsonify({"message": "No letters found"}), 404
