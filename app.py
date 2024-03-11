@@ -64,12 +64,6 @@ def post_letter():
         return jsonify({"success": True, "message": "Letter added"}), 201
     else:
         return jsonify({"success": False, "message": "No content provided"}), 400
-    
-@app.route("/api/letters", methods=['GET'])
-def get_letters():
-    letters = Letter.query.all()
-    letters_data = [{"id": letter.id, "content": letter.content} for letter in letters]
-    return jsonify(letters_data)
 
 @app.route("/api/letters", methods=['GET'])
 def get_letters():
